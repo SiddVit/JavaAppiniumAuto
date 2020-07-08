@@ -1,6 +1,5 @@
 import org.junit.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -26,7 +25,7 @@ public class MainClassTest {
     public void testGetClassString() {
         expected_hello = "hello";
         expected_Hello = "Hello";
-        assertThat(String.format("GetClassString don't have '%s' or '%s'.", expected_hello, expected_Hello),
+        assertTrue(String.format("GetClassString don't have '%s' or '%s'.", expected_hello, expected_Hello),
                 main.getClassString().contains(expected_hello) || main.getClassString().contains(expected_Hello));
     }
 }
