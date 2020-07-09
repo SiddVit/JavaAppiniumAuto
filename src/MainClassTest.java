@@ -12,13 +12,16 @@ public class MainClassTest {
     @Test
     public void testGetLocalNumber() {
         expected_int = 14;
-        assertEquals(String.format("GetLocalNumber return %s, not %s.", main.getLocalNumber(), expected_int), main.getLocalNumber(), expected_int);
+        assertEquals(String.format("GetLocalNumber return %s, not %s.", main.getLocalNumber(), expected_int),
+                main.getLocalNumber(), expected_int);
     }
 
     @Test
     public void testGetClassNumber() {
         expected_int = 45;
-        assertTrue(String.format("GetClassNumber return less than %s.", expected_int), main.getClassNumber() > expected_int);
+        assertTrue(String.format("GetClassNumber returned a value %s, it's less than or equal to %s.",
+                main.getClassNumber(), expected_int),
+                main.getClassNumber() > expected_int);
     }
 
     @Test
