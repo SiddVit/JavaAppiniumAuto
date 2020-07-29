@@ -117,7 +117,7 @@ public class FirstTest {
                 By.xpath("//*[contains(@text,'Search…')]"),
                 "Java", "Cannot find search input",
                 5);
-        List searched_elements = waitForElementsPresent(
+        List<WebElement> searched_elements = waitForElementsPresent(
                 By.id("org.wikipedia:id/page_list_item_container"),
                 "Cannot find searched result", 10);
 
@@ -150,7 +150,7 @@ public class FirstTest {
 
         for (int i = 0; i < searched_elements.size(); i++) {
             Assert.assertTrue(
-                    String.format("In %s index of elements hasn't word Java", i),
+                    String.format("In %s index of elements hasn't word Java, but has %s", i, searched_elements.get(i).getAttribute("text")),
                     searched_elements.get(i).getAttribute("text").contains("Java"));
         }
     }
