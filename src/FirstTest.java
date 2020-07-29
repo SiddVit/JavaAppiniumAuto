@@ -122,6 +122,16 @@ public class FirstTest {
                 "Cannot find searched result", 10);
 
         Assert.assertEquals("Incorrect value between waiting and actual data", 4, searched_elements.size());
+
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/search_close_btn"),
+                "Cannot find X to cancel search",
+                5);
+
+        waitForElementNotPresent(
+                By.id("org.wikipedia:id/page_list_item_container"),
+                "Searched result is still present on the page",
+                5);
     }
 
     private WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds) {
