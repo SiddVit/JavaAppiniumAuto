@@ -134,13 +134,34 @@ public class FirstTest {
                 5);
     }
 
+    @Test
+    public void testCheckedSearchResults() {
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/search_container"),
+                "Cannot find 'Search Wikipedia' input",
+                5);
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text,'Search…')]"),
+                "Java", "Cannot find search input",
+                5);
+        List<WebElement> searched_elements = waitForElementsPresent(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title']"),
+                "Cannot find searched result", 10);
+
+        for (int i = 0; i < searched_elements.size(); i++) {
+            Assert.assertTrue(
+                    String.format("In %s index of elements hasn't word Java", i),
+                    searched_elements.get(i).getAttribute("text").contains("Java"));
+        }
+    }
+
     private WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
         wait.withMessage(error_message + "\n");
         return wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
-    private List waitForElementsPresent(By by, String error_message, long timeoutInSeconds) {
+    private List<WebElement> waitForElementsPresent(By by, String error_message, long timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
         wait.withMessage(error_message + "\n");
         return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
