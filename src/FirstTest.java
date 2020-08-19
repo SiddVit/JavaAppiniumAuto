@@ -7,12 +7,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.URL;
+import java.time.Duration;
 import java.util.List;
 
 import static io.appium.java_client.touch.WaitOptions.waitOptions;
@@ -300,6 +302,60 @@ public class FirstTest {
                 "We're found some results by request " + search_line);
     }
 
+    @Test
+    public void testChangeScreenOrientationOnSearchResults() {
+        String search_line = "Java";
+
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/search_container"),
+                "Cannot find 'Search Wikipedia' input",
+                5);
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text,'Search…')]"),
+                search_line, "Cannot find search input",
+                5);
+        waitForElementAndClick(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Object-oriented programming language']"),
+                "Cannot find 'Object-oriented programming language' topic searching by " + search_line,
+                15);
+        String title_before_rotation = waitForElementAndGetAttribute(
+                By.id("org.wikipedia:id/view_page_title_text"),
+                "text", "Cannot find title of article", 15);
+        driver.rotate(ScreenOrientation.LANDSCAPE);
+        String title_after_rotation = waitForElementAndGetAttribute(
+                By.id("org.wikipedia:id/view_page_title_text"),
+                "text", "Cannot find title of article", 15);
+        Assert.assertEquals("Article title has been changed after rotation",
+                title_before_rotation, title_after_rotation);
+        driver.rotate(ScreenOrientation.PORTRAIT);
+        String title_after_second_rotation = waitForElementAndGetAttribute(
+                By.id("org.wikipedia:id/view_page_title_text"),
+                "text", "Cannot find title of article", 15);
+        Assert.assertEquals("Article title has been changed after rotation",
+                title_after_second_rotation, title_after_rotation);
+    }
+
+    @Test
+    public void testCheckSearchArticleInBackground() {
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/search_container"),
+                "Cannot find 'Search Wikipedia' input",
+                5);
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text,'Search…')]"),
+                "Java", "Cannot find search input",
+                5);
+        waitForElementPresent(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Object-oriented programming language']"),
+                "Cannot find 'Object-oriented programming language' topic searching by 'Java'",
+                15);
+        driver.runAppInBackground(Duration.ofSeconds(2));
+        waitForElementPresent(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Object-oriented programming language']"),
+                "Cannot find article after returning from background",
+                15);
+    }
+
     private WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
         wait.withMessage(error_message + "\n");
@@ -397,5 +453,10 @@ public class FirstTest {
             String default_message = String.format("An element %s supposed to be not present", by.toString());
             throw new AssertionError(default_message + " " + error_message);
         }
+    }
+
+    private String waitForElementAndGetAttribute(By by, String attribute, String error_message, long timeoutInSeconds) {
+        WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
+        return element.getAttribute(attribute);
     }
 }
