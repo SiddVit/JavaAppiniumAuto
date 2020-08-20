@@ -25,6 +25,7 @@ public class CoreTestCase extends TestCase {
         capabilities.setCapability("appPackage", "org.wikipedia");
         capabilities.setCapability("appActivity", ".main.MainActivity");
         capabilities.setCapability("app", "C:\\Study\\JavaAppiniumAuto\\apks\\org.wikipedia.apk");
+        capabilities.setCapability("orientation", ScreenOrientation.PORTRAIT);
 
         driver = new AndroidDriver(new URL(AppiumURL), capabilities);
     }
