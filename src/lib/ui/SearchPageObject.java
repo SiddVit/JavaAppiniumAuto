@@ -2,6 +2,9 @@ package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class SearchPageObject extends MainPageObject {
     private static final String SEARCH_INIT_ELEMENT = "//*[contains(@text,'Search Wikipedia')]",
@@ -9,7 +12,9 @@ public class SearchPageObject extends MainPageObject {
             SEARCH_RESULT_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='{SUBSTRING}']",
             SEARCH_CANCEL_BUTTON = "org.wikipedia:id/search_close_btn",
             SEARCH_RESULT_ELEMENT = "//*[@resource-id='org.wikipedia:id/search_results_list']/*[@resource-id='org.wikipedia:id/page_list_item_container']",
-            SEARCH_EMPTY_RESULT_ELEMENT = "//*[@text='No results found']";
+            SEARCH_EMPTY_RESULT_ELEMENT = "//*[@text='No results found']",
+            SEARCH_INPUT_TEXT = "//*[@resource-id='org.wikipedia:id/search_container']//*[@class='android.widget.TextView']",
+            SEARCH_RESULTS_ELEMENTS = "//*[@resource-id='org.wikipedia:id/page_list_item_title']";
 
 
     public SearchPageObject(AppiumDriver driver) {
@@ -74,5 +79,16 @@ public class SearchPageObject extends MainPageObject {
                 By.xpath(SEARCH_RESULT_ELEMENT),
                 "We supposed not to find any results",
                 15);
+    }
+
+    public String getTextFromSearchInput() {
+        return this.waitForElementAndGetAttribute(By.xpath(SEARCH_INPUT_TEXT), "text",
+                "Cannot find search input element", 5);
+    }
+
+    public List<WebElement> getSearchedElements() {
+        return this.waitForElementsPresent(
+                By.xpath(SEARCH_RESULTS_ELEMENTS),
+                "Cannot find searched result", 10);
     }
 }

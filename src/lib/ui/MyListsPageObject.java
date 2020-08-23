@@ -26,6 +26,13 @@ public class MyListsPageObject extends MainPageObject {
                 5);
     }
 
+    public void openArticleByName(String name_of_article) {
+        this.waitForElementAndClick(
+                By.xpath(getFolderXpathByName(name_of_article)),
+                "Cannot find article by name " + name_of_article,
+                5);
+    }
+
     public void swipeByArticleToDelete(String article_title) {
         this.waitForArticleToAppearByTitle(article_title);
         this.swipeElementToLeft(

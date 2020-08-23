@@ -6,12 +6,15 @@ import lib.ui.SearchPageObject;
 import org.junit.Test;
 
 public class ChangeAppConditionTests extends CoreTestCase {
+    String name_of_substring = "Object-oriented programming language";
+    String search_line = "Java";
+
     @Test
     public void testChangeScreenOrientationOnSearchResults() {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
         SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
+        SearchPageObject.typeSearchLine(search_line);
+        SearchPageObject.clickByArticleWithSubstring(name_of_substring);
 
         ArticlePageObject articlePageObject = new ArticlePageObject(driver);
         String title_before_rotation = articlePageObject.getArticleTitle();
@@ -28,11 +31,10 @@ public class ChangeAppConditionTests extends CoreTestCase {
     @Test
     public void testCheckSearchArticleInBackground() {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
-
         SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.waitForSearchResult("Object-oriented programming language");
+        SearchPageObject.typeSearchLine(search_line);
+        SearchPageObject.waitForSearchResult(name_of_substring);
         this.backgroundApp(2);
-        SearchPageObject.waitForSearchResult("Object-oriented programming language");
+        SearchPageObject.waitForSearchResult(name_of_substring);
     }
 }

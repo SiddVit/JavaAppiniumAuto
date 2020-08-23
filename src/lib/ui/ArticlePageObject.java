@@ -12,7 +12,13 @@ public class ArticlePageObject extends MainPageObject {
             ADD_TO_MY_LIST_OVERLAY = "org.wikipedia:id/onboarding_button",
             MY_LIST_NAME_INPUT = "org.wikipedia:id/text_input",
             MY_LIST_OK_BUTTON = "//*[@text='OK']",
-            CLOSE_ARTICLE_BUTTON = "//android.widget.ImageButton[@content-desc='Navigate up']";
+            CLOSE_ARTICLE_BUTTON = "//android.widget.ImageButton[@content-desc='Navigate up']",
+            MORE_OPTIONS = "//android.widget.ImageView[@content-desc='More options']",
+            ADD_TO_READING_LIST = "//*[@text='Add to reading list']",
+            GOT_IT_BUTTON = "org.wikipedia:id/onboarding_button",
+            INPUT_NAME_OF_FOLDER = "org.wikipedia:id/text_input",
+            OK_BUTTON = "//*[@text='OK']",
+            FOLDER_TITLE = "org.wikipedia:id/item_title";
 
     public ArticlePageObject(AppiumDriver driver) {
         super(driver);
@@ -45,6 +51,54 @@ public class ArticlePageObject extends MainPageObject {
         this.waitForElementAndClick(
                 By.xpath(CLOSE_ARTICLE_BUTTON),
                 "Cannot find button X button and tap they",
+                5);
+    }
+
+
+    public void clickMoreOptions() {
+        this.waitForElementAndClick(
+                By.xpath(MORE_OPTIONS),
+                "Cannot find button to open article options",
+                5);
+    }
+
+    public void clickAddToReadingList() {
+        this.waitForElementAndClick(
+                By.xpath(ADD_TO_READING_LIST),
+                "Cannot find option to add article to reading list",
+                5);
+    }
+
+    public void clickGotItButton() {
+        this.waitForElementAndClick(
+                By.id(GOT_IT_BUTTON),
+                "Cannot find 'Got it' tip overlay",
+                5);
+    }
+
+    public void sendKeysToNameOfArticlesFolder(String name_of_folder) {
+        this.waitForElementAndClear(
+                By.id(INPUT_NAME_OF_FOLDER),
+                "Cannot find input to set name of articles folder",
+                5);
+        this.waitForElementAndSendKeys(
+                By.id(INPUT_NAME_OF_FOLDER),
+                name_of_folder,
+                "Cannot find input to set name of articles folder",
+                5);
+    }
+
+    public void clickOk() {
+        this.waitForElementAndClick(
+                By.xpath(OK_BUTTON),
+                "Cannot press OK button",
+                5);
+    }
+
+    public void clickAddToFolder() {
+        this.waitForElementAndClick(
+                By.id(FOLDER_TITLE),
+                "Cannot find my list and click by them",
                 5);
     }
 }

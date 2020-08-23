@@ -1,10 +1,8 @@
 package tests;
 
 import lib.CoreTestCase;
-import lib.ui.MainPageObject;
 import lib.ui.SearchPageObject;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -29,19 +27,15 @@ public class SearchTests extends CoreTestCase {
 
     @Test
     public void testCheckTextInSearchInput() {
-        MainPageObject.assertElementHasText(
-                By.xpath("//*[@resource-id='org.wikipedia:id/search_container']//*[@class='android.widget.TextView']"),
-                "Search Wikipedia",
-                "Incorrect text in search input");
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        assertEquals("Incorrect text in searching input", "Search Wikipedia", SearchPageObject.getTextFromSearchInput());
     }
 
     @Test
     public void testAmountOfNotEmptySearch() {
-        String search_line = "Linkin Park Discography";
-
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
         SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine(search_line);
+        SearchPageObject.typeSearchLine("Linkin Park Discography");
         int amount_of_search_elements = SearchPageObject.getAmountOfFoundArticles();
         assertTrue(
                 "We found too few results!",
@@ -51,55 +45,33 @@ public class SearchTests extends CoreTestCase {
 
     @Test
     public void testAmountOfEmptySearch() {
-        String search_line = "zxcvasdfqwer";
-
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
         SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine(search_line);
+        SearchPageObject.typeSearchLine("zxcvasdfqwer");
         SearchPageObject.waitForEmptyResultLabel();
         SearchPageObject.assertThereIsNoResultOfSearch();
     }
 
     @Test
     public void testCancelSearchAfterFind() {
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/search_container"),
-                "Cannot find 'Search Wikipedia' input",
-                5);
-        MainPageObject.waitForElementAndSendKeys(
-                By.xpath("//*[contains(@text,'Search…')]"),
-                "Java", "Cannot find search input",
-                5);
-        List<WebElement> searched_elements = MainPageObject.waitForElementsPresent(
-                By.id("org.wikipedia:id/page_list_item_container"),
-                "Cannot find searched result", 10);
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine("Java");
+        SearchPageObject.getAmountOfFoundArticles();
 
-        assertEquals("Incorrect value between waiting and actual data", 4, searched_elements.size());
+        assertEquals("Incorrect value between waiting and actual data", 4, SearchPageObject.getAmountOfFoundArticles());
 
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/search_close_btn"),
-                "Cannot find X to cancel search",
-                5);
-
-        MainPageObject.waitForElementNotPresent(
-                By.id("org.wikipedia:id/page_list_item_container"),
-                "Searched result is still present on the page",
-                5);
+        SearchPageObject.clickCancelSearch();
+        SearchPageObject.assertThereIsNoResultOfSearch();
     }
 
     @Test
     public void testCheckedSearchResults() {
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/search_container"),
-                "Cannot find 'Search Wikipedia' input",
-                5);
-        MainPageObject.waitForElementAndSendKeys(
-                By.xpath("//*[contains(@text,'Search…')]"),
-                "Java", "Cannot find search input",
-                5);
-        List<WebElement> searched_elements = MainPageObject.waitForElementsPresent(
-                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title']"),
-                "Cannot find searched result", 10);
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine("Java");
+
+        List<WebElement> searched_elements = SearchPageObject.getSearchedElements();
 
         for (int i = 0; i < searched_elements.size(); i++) {
             assertTrue(
