@@ -1,6 +1,7 @@
 package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -10,11 +11,13 @@ public class SearchPageObject extends MainPageObject {
     private static final String SEARCH_INIT_ELEMENT = "//*[contains(@text,'Search Wikipedia')]",
             SEARCH_INPUT = "//*[contains(@text,'Search…')]",
             SEARCH_RESULT_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='{SUBSTRING}']",
+            SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION = "//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@class='android.widget.LinearLayout']",
             SEARCH_CANCEL_BUTTON = "org.wikipedia:id/search_close_btn",
             SEARCH_RESULT_ELEMENT = "//*[@resource-id='org.wikipedia:id/search_results_list']/*[@resource-id='org.wikipedia:id/page_list_item_container']",
             SEARCH_EMPTY_RESULT_ELEMENT = "//*[@text='No results found']",
             SEARCH_INPUT_TEXT = "//*[@resource-id='org.wikipedia:id/search_container']//*[@class='android.widget.TextView']",
-            SEARCH_RESULTS_ELEMENTS = "//*[@resource-id='org.wikipedia:id/page_list_item_title']";
+            SEARCH_RESULTS_ELEMENTS = "//*[@resource-id='org.wikipedia:id/page_list_item_title']",
+            SEARCH_RESULTS_DESCRIPTION = "//*[@resource-id='org.wikipedia:id/page_list_item_description']";
 
 
     public SearchPageObject(AppiumDriver driver) {
@@ -24,6 +27,30 @@ public class SearchPageObject extends MainPageObject {
     /* TEMPLATES METHODS */
     private static String getResultSearchElement(String substring) {
         return SEARCH_RESULT_BY_SUBSTRING_TPL.replace("{SUBSTRING}", substring);
+    }
+
+    private List<WebElement> getElementByTitleAndDescription() {
+        return this.waitForElementsPresent(By.xpath(SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION),
+                "Can't find finding elements", 5);
+    }
+
+    public void waitForElementByTitleAndDescription(String title, String description) {
+        List<WebElement> elements = this.getElementByTitleAndDescription();
+        int i = 0;
+        int catcher = 0;
+        while (i < elements.size()) {
+            if (elements.get(i).findElement(By.xpath(SEARCH_RESULTS_ELEMENTS)).getAttribute("text").equals(title)
+                    && elements.get(i).findElement(By.xpath(SEARCH_RESULTS_DESCRIPTION)).getAttribute("text").equals(description)) {
+                catcher++;
+                break;
+            }
+            i++;
+        }
+        if (catcher == 0) {
+            Assert.fail(String.format("Can't find '%s' and '%s' in this search result", title, description));
+        } else {
+            Assert.assertTrue(true);
+        }
     }
     /* TEMPLATES METHODS */
 
