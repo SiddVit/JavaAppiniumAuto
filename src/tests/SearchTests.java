@@ -2,6 +2,7 @@ package tests;
 
 import lib.CoreTestCase;
 import lib.ui.SearchPageObject;
+import lib.ui.factory.SearchPageObjectFactory;
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
 
@@ -10,7 +11,7 @@ import java.util.List;
 public class SearchTests extends CoreTestCase {
     @Test
     public void testSearch() {
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.waitForSearchResult("Object-oriented programming language");
@@ -18,7 +19,7 @@ public class SearchTests extends CoreTestCase {
 
     @Test
     public void testAssertTitlesAndDescriptions() {
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.waitForElementByTitleAndDescription("Java", "Island of Indonesia");
@@ -28,7 +29,7 @@ public class SearchTests extends CoreTestCase {
 
     @Test
     public void testCancelSearch() {
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.waitForCancelButtonToAppend();
         SearchPageObject.clickCancelSearch();
@@ -37,13 +38,13 @@ public class SearchTests extends CoreTestCase {
 
     @Test
     public void testCheckTextInSearchInput() {
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         assertEquals("Incorrect text in searching input", "Search Wikipedia", SearchPageObject.getTextFromSearchInput());
     }
 
     @Test
     public void testAmountOfNotEmptySearch() {
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Linkin Park Discography");
         int amount_of_search_elements = SearchPageObject.getAmountOfFoundArticles();
@@ -55,7 +56,7 @@ public class SearchTests extends CoreTestCase {
 
     @Test
     public void testAmountOfEmptySearch() {
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("zxcvasdfqwer");
         SearchPageObject.waitForEmptyResultLabel();
@@ -64,7 +65,7 @@ public class SearchTests extends CoreTestCase {
 
     @Test
     public void testCancelSearchAfterFind() {
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.getAmountOfFoundArticles();
@@ -77,7 +78,7 @@ public class SearchTests extends CoreTestCase {
 
     @Test
     public void testCheckedSearchResults() {
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
 
