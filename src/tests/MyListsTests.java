@@ -1,17 +1,20 @@
 package tests;
 
 import lib.CoreTestCase;
+import lib.Platform;
 import lib.ui.ArticlePageObject;
 import lib.ui.MyListsPageObject;
 import lib.ui.NavigationUI;
 import lib.ui.SearchPageObject;
 import lib.ui.factory.ArticlePageObjectFactory;
+import lib.ui.factory.MyListsPageObjectFactory;
+import lib.ui.factory.NavigationUIFactory;
 import lib.ui.factory.SearchPageObjectFactory;
 import org.junit.Test;
 
 public class MyListsTests extends CoreTestCase {
-    String name_of_folder = "Learning programming";
-    String search_line = "Java";
+    private static final String name_of_folder = "Learning programming";
+    private static final String search_line = "Java";
 
     @Test
     public void testSaveFirstArticleToMyList() {
@@ -25,14 +28,20 @@ public class MyListsTests extends CoreTestCase {
 
         String article_title = ArticlePageObject.getArticleTitle();
 
-        ArticlePageObject.addArticleToMyList(name_of_folder);
+        if (Platform.getInstance().isAndroid()) {
+            ArticlePageObject.addArticleToMyList(name_of_folder);
+        } else {
+            ArticlePageObject.addArticleToMySaved();
+        }
         ArticlePageObject.closeArticle();
 
-        NavigationUI navigationUI = new NavigationUI(driver);
+        NavigationUI navigationUI = NavigationUIFactory.get(driver);
         navigationUI.clickMyLists();
 
-        MyListsPageObject myListsPageObject = new MyListsPageObject(driver);
-        myListsPageObject.openFolderByName(name_of_folder);
+        MyListsPageObject myListsPageObject = MyListsPageObjectFactory.get(driver);
+        if (Platform.getInstance().isAndroid()) {
+            myListsPageObject.openFolderByName(name_of_folder);
+        }
         myListsPageObject.swipeByArticleToDelete(article_title);
     }
 
@@ -64,10 +73,10 @@ public class MyListsTests extends CoreTestCase {
         ArticlePageObject.clickAddToFolder();
         ArticlePageObject.closeArticle();
 
-        NavigationUI navigationUI = new NavigationUI(driver);
+        NavigationUI navigationUI = NavigationUIFactory.get(driver);
         navigationUI.clickMyLists();
 
-        MyListsPageObject myListsPageObject = new MyListsPageObject(driver);
+        MyListsPageObject myListsPageObject = MyListsPageObjectFactory.get(driver);
         myListsPageObject.openFolderByName(name_of_folder);
         myListsPageObject.swipeByArticleToDelete(second_article_title);
         myListsPageObject.waitForArticleToAppearByTitle(first_article_title);
