@@ -55,14 +55,14 @@ a separate NPM package.
 - Fork [CodeMirror](https://github.com/codemirror/CodeMirror/)
   ([how to fork a repo](https://help.github.com/articles/fork-a-repo))
 - Make your changes
-- If your changes are easy to test or likely to regress, add tests.
+- If your changes are easy to test or likely to regress, add test.java.tests.
   Tests for the core go into `test/test.js`, some modes have their own
   test suite under `mode/XXX/test.js`. Feel free to add new test
   suites to modes that don't have one yet (be sure to link the new
-  tests into `test/index.html`).
+  test.java.tests into `test/index.html`).
 - Follow the general code style of the rest of the project (see
   below). Run `bin/lint` to verify that the linter is happy.
-- Make sure all tests pass. Visit `test/index.html` in your browser to
+- Make sure all test.java.tests pass. Visit `test/index.html` in your browser to
   run them.
 - Submit a pull request
 ([how to create a pull request](https://help.github.com/articles/fork-a-repo)).

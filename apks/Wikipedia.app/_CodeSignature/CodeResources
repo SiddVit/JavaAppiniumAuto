@@ -1858,55 +1858,55 @@
 		<data>
 		fPt3mXz+Xy7IPzKUJAisBl5c+eo=
 		</data>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/AUTHORS</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/AUTHORS</key>
 		<data>
 		wLt2jj7IOXBpbylzWNE749i/UA0=
 		</data>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/CHANGELOG.md</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/CHANGELOG.md</key>
 		<data>
 		O5AXgPIEPT2k2rMrVYHWHqXFKbI=
 		</data>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/CONTRIBUTING.md</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/CONTRIBUTING.md</key>
 		<data>
 		C7SA9G2NrUCRlmfs4lz9eTW4utE=
 		</data>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/LICENSE</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/LICENSE</key>
 		<data>
 		xDV1SZkf1wkNCstoXuFc+yohV1A=
 		</data>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/README.md</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/README.md</key>
 		<data>
 		I0p/cE+0PBgzR/w8gUdWFQxj1d4=
 		</data>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/lib/codemirror.css</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/test.java.lib/codemirror.css</key>
 		<data>
 		Ha94ns+dc5z+jfKVUX3UvYRt7Do=
 		</data>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/lib/codemirror.js</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/test.java.lib/codemirror.js</key>
 		<data>
 		HUI5qK6bd6op9c9OfJfP0GuyG9A=
 		</data>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/mode/clike/clike.js</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/mode/clike/clike.js</key>
 		<data>
 		xSYzNNi4hcWhB6U6Ro91DKupL9w=
 		</data>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/mode/css/css.js</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/mode/css/css.js</key>
 		<data>
 		VcpTTW13lfgV/Wf3xSv//dZuq+0=
 		</data>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/mode/htmlmixed/htmlmixed.js</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/mode/htmlmixed/htmlmixed.js</key>
 		<data>
 		PFZaQqDUDoixzBOfuyCN+A7wGbs=
 		</data>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/mode/javascript/javascript.js</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/mode/javascript/javascript.js</key>
 		<data>
 		3V/dI6T1A7msqSE27zrFG1SoFMY=
 		</data>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/mode/php/php.js</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/mode/php/php.js</key>
 		<data>
 		twWEOqBYF04ANt7T6232kNnDLmk=
 		</data>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/mode/xml/xml.js</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/mode/xml/xml.js</key>
 		<data>
 		exwQlxf+ySS9d/5QUaJIr/BBtkU=
 		</data>
@@ -1942,7 +1942,7 @@
 		<data>
 		6XAvl2imycaWL4WzqVVqox+fmOc=
 		</data>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/mode/mediawiki/tests/qunit/CodeMirror.mediawiki.test.js</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/mode/mediawiki/test.java.tests/qunit/CodeMirror.mediawiki.test.js</key>
 		<data>
 		+mXjHCzGj8kESvD40wHOScuZzag=
 		</data>
@@ -9428,91 +9428,91 @@
 			WrEDinT6dyQ1fhxTye5AdSabmbz7X/gWVMMrMbjIbts=
 			</data>
 		</dict>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/AUTHORS</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/AUTHORS</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			YxJ4kBACDSRu4ADL+ZJvJ2Dcx/cZ6f7SkcqHW0EB7Ew=
 			</data>
 		</dict>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/CHANGELOG.md</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/CHANGELOG.md</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			epnzuTgDRcF6uIINS7L7MyLcLm/aNNcM/sjtu/C7H44=
 			</data>
 		</dict>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/CONTRIBUTING.md</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/CONTRIBUTING.md</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			tmOO63L6XkzKaDwGlMMtgAcQtofKOgcZ9d6pYlt0bmU=
 			</data>
 		</dict>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/LICENSE</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/LICENSE</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			o/L+Ksa0caqAxzfF0oPdBJvckDpzg17m1NLKwC/dU78=
 			</data>
 		</dict>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/README.md</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/README.md</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			2FeVglk/cdRsoOhYhTJlyQxNsaMVwcGQ4ANSNPyo9ww=
 			</data>
 		</dict>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/lib/codemirror.css</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/test.java.lib/codemirror.css</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			o/v/5fOniPHMAww4EAIfRBFV0SeoqksPrY0Yq5x+wSM=
 			</data>
 		</dict>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/lib/codemirror.js</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/test.java.lib/codemirror.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			12Ccq8GVOyXU58FyXK5+myqVuff9257GoG0ky0hQvLw=
 			</data>
 		</dict>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/mode/clike/clike.js</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/mode/clike/clike.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			+JM5/AVZZHKAl1LR1/l95+gGuaRbgrX0yxtZVGIKFdo=
 			</data>
 		</dict>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/mode/css/css.js</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/mode/css/css.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			A3dmy5MnEwoDZJmeJUoj98Al4uPPcF47typ3TSLhA0g=
 			</data>
 		</dict>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/mode/htmlmixed/htmlmixed.js</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/mode/htmlmixed/htmlmixed.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			YtBvhTDO4A27QPGmzVTybSqjmNNEi8Uc9KPvyytMoTA=
 			</data>
 		</dict>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/mode/javascript/javascript.js</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/mode/javascript/javascript.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			JVE5V7hEM86cO1BxmUe98oLJbQPn7Fs+YvF5MKl+raw=
 			</data>
 		</dict>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/mode/php/php.js</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/mode/php/php.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			5GC7UR5LMpPOzLZ1rOb+nOMX7Mgqpfo4ya2uUmN4X0I=
 			</data>
 		</dict>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/lib/codemirror/mode/xml/xml.js</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/test.java.lib/codemirror/mode/xml/xml.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
@@ -9575,7 +9575,7 @@
 			3jZkG3yPni4CtnWte0N3Bhoq+FvxN+p38XtH19sOsJQ=
 			</data>
 		</dict>
-		<key>Frameworks/WMF.framework/assets/codemirror/resources/mode/mediawiki/tests/qunit/CodeMirror.mediawiki.test.js</key>
+		<key>Frameworks/WMF.framework/assets/codemirror/resources/mode/mediawiki/test.java.tests/qunit/CodeMirror.mediawiki.test.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>

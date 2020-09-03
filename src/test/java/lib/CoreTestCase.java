@@ -7,6 +7,7 @@ import org.openqa.selenium.ScreenOrientation;
 
 import java.time.Duration;
 
+
 public class CoreTestCase extends TestCase {
     protected AppiumDriver driver;
 

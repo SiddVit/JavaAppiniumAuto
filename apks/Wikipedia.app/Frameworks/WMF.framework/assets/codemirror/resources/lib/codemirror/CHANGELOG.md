@@ -1122,7 +1122,7 @@ Integrate some bugfixes, enhancements to the vim keymap, and new modes ([D](http
       Saves memory and CPU cycles.
       `compareStates` is no longer needed.
       `onHighlightComplete` no longer works.
-*   Integrate mode (Markdown, XQuery, CSS, sTex) tests in central testsuite.
+*   Integrate mode (Markdown, XQuery, CSS, sTex) test.java.tests in central testsuite.
 *   Add a [`CodeMirror.version`](http://codemirror.net/doc/manual.html#version) property.
 *   More robust handling of nested modes in [formatting](http://codemirror.net/demo/formatting.html) and [closetag](http://codemirror.net/demo/closetag.html) plug-ins.
 *   Un/redo now preserves [marked text](http://codemirror.net/doc/manual.html#markText) and bookmarks.
@@ -1243,7 +1243,7 @@ Fixes `TextMarker.clear`, which is broken in 2.17.
 *   Add [Github-style Markdown](http://codemirror.net/mode/gfm/index.html) mode.
 *   Add [Monokai](http://codemirror.net/theme/monokai.css) and [Rubyblue](http://codemirror.net/theme/rubyblue.css) themes.
 *   Add [`setBookmark`](http://codemirror.net/doc/manual.html#setBookmark) method.
-*   Move some of the demo code into reusable components under [`lib/util`](http://codemirror.net/addon/).
+*   Move some of the demo code into reusable components under [`test.java.lib/util`](http://codemirror.net/addon/).
 *   Make screen-coord-finding code faster and more reliable.
 *   Fix drag-and-drop in Firefox.
 *   Improve support for IME.
