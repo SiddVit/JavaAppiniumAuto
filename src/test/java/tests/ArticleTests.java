@@ -16,7 +16,7 @@ public class ArticleTests extends CoreTestCase {
         SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
 
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
-        String article_title = ArticlePageObject.getArticleTitle();
+        String article_title = ArticlePageObject.getArticleTitle("Java (programming language)");
 
         assertEquals("We see unexpected title", "Java (programming language)", article_title);
     }
@@ -29,7 +29,7 @@ public class ArticleTests extends CoreTestCase {
         SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
 
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
-        ArticlePageObject.waitForTitleElement();
+        ArticlePageObject.waitForTitleElement("Java (programming language)");
         ArticlePageObject.swipeToFooter();
     }
 
@@ -40,6 +40,6 @@ public class ArticleTests extends CoreTestCase {
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
-        ArticlePageObject.waitForTitleElement();
+        ArticlePageObject.waitForTitleElement("Java (programming language)");
     }
 }
