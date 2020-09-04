@@ -15,6 +15,8 @@ import org.junit.Test;
 public class MyListsTests extends CoreTestCase {
     private static final String name_of_folder = "Learning programming";
     private static final String search_line = "Java";
+    private static final String full_article_title = "Java (programming language)";
+
 
     @Test
     public void testSaveFirstArticleToMyList() {
@@ -24,9 +26,9 @@ public class MyListsTests extends CoreTestCase {
         SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
 
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
-        ArticlePageObject.waitForTitleElement();
+        ArticlePageObject.waitForTitleElement(full_article_title);
 
-        String article_title = ArticlePageObject.getArticleTitle();
+        String article_title = ArticlePageObject.getArticleTitle(full_article_title);
 
         if (Platform.getInstance().isAndroid()) {
             ArticlePageObject.addArticleToMyList(name_of_folder);
@@ -47,41 +49,52 @@ public class MyListsTests extends CoreTestCase {
 
     @Test
     public void testTwoArticlesToMyList() {
-        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
-        SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine(search_line);
-        SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
+        SearchPageObject searchPageObject = SearchPageObjectFactory.get(driver);
+        searchPageObject.initSearchInput();
+        searchPageObject.typeSearchLine(search_line);
+        searchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
 
-        ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
-        String first_article_title = ArticlePageObject.getArticleTitle();
-        ArticlePageObject.waitForTitleElement();
-        ArticlePageObject.clickMoreOptions();
-        ArticlePageObject.clickAddToReadingList();
-        ArticlePageObject.clickGotItButton();
-        ArticlePageObject.sendKeysToNameOfArticlesFolder(name_of_folder);
-        ArticlePageObject.clickOk();
-        ArticlePageObject.closeArticle();
+        ArticlePageObject articlePageObject = ArticlePageObjectFactory.get(driver);
+        articlePageObject.waitForTitleElement(full_article_title);
 
-        SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine(search_line);
-        SearchPageObject.clickByArticleWithSubstring("Island of Indonesia");
-        String second_article_title = ArticlePageObject.getArticleTitle();
+        String first_article_title = articlePageObject.getArticleTitle(full_article_title);
+        if (Platform.getInstance().isAndroid()) {
+            articlePageObject.addArticleToMyList(name_of_folder);
+        } else {
+            articlePageObject.addArticleToMySaved();
+            articlePageObject.iosAuthClose();
+        }
+        articlePageObject.closeArticle();
 
-        ArticlePageObject.waitForTitleElement();
-        ArticlePageObject.clickMoreOptions();
-        ArticlePageObject.clickAddToReadingList();
-        ArticlePageObject.clickAddToFolder();
-        ArticlePageObject.closeArticle();
+        searchPageObject.initSearchInput();
+        if (Platform.getInstance().isIOS()) {
+            articlePageObject.iosClearSearchString();
+        }
+
+        searchPageObject.typeSearchLine(search_line);
+        searchPageObject.clickByArticleWithSubstring("Island of Indonesia");
+
+        articlePageObject.waitForTitleElement(search_line);
+
+        String second_article_title = articlePageObject.getArticleTitle(search_line);
+
+        if (Platform.getInstance().isAndroid()) {
+            articlePageObject.addArticleToMyExistingList(name_of_folder);
+        } else {
+            articlePageObject.addArticleToMySaved();
+        }
+        articlePageObject.closeArticle();
 
         NavigationUI navigationUI = NavigationUIFactory.get(driver);
         navigationUI.clickMyLists();
 
-        MyListsPageObject myListsPageObject = MyListsPageObjectFactory.get(driver);
-        myListsPageObject.openFolderByName(name_of_folder);
-        myListsPageObject.swipeByArticleToDelete(second_article_title);
-        myListsPageObject.waitForArticleToAppearByTitle(first_article_title);
-        myListsPageObject.openArticleByName(first_article_title);
-        String title_of_article = ArticlePageObject.getArticleTitle();
-        assertEquals("Article has been changed after open", first_article_title, title_of_article);
+        MyListsPageObject myListPageObject = MyListsPageObjectFactory.get(driver);
+
+        if (Platform.getInstance().isAndroid()) {
+            myListPageObject.openFolderByName(name_of_folder);
+        }
+
+        myListPageObject.swipeByArticleToDelete(first_article_title);
+        myListPageObject.waitForArticleToAppearByTitle(second_article_title);
     }
 }
