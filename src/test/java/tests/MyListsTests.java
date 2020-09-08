@@ -2,10 +2,7 @@ package tests;
 
 import lib.CoreTestCase;
 import lib.Platform;
-import lib.ui.ArticlePageObject;
-import lib.ui.MyListsPageObject;
-import lib.ui.NavigationUI;
-import lib.ui.SearchPageObject;
+import lib.ui.*;
 import lib.ui.factory.ArticlePageObjectFactory;
 import lib.ui.factory.MyListsPageObjectFactory;
 import lib.ui.factory.NavigationUIFactory;
@@ -16,6 +13,8 @@ public class MyListsTests extends CoreTestCase {
     private static final String name_of_folder = "Learning programming";
     private static final String search_line = "Java";
     private static final String full_article_title = "Java (programming language)";
+    public static final String login = "sidvit";
+    public static final String password = "qqwerty122";
 
 
     @Test
@@ -23,7 +22,7 @@ public class MyListsTests extends CoreTestCase {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine(search_line);
-        SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
+        SearchPageObject.clickByArticleWithSubstring("bject-oriented programming language");
 
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
         ArticlePageObject.waitForTitleElement(full_article_title);
@@ -35,9 +34,21 @@ public class MyListsTests extends CoreTestCase {
         } else {
             ArticlePageObject.addArticleToMySaved();
         }
+        if (Platform.getInstance().isMW()) {
+            AuthorizationPageObject authorizationPageObject = new AuthorizationPageObject(driver);
+            authorizationPageObject.clickAuthButton();
+            authorizationPageObject.enterLoginData(login, password);
+            authorizationPageObject.submitForm();
+
+            ArticlePageObject.waitForTitleElement(full_article_title);
+            assertEquals("We are not on the same page after login", article_title, ArticlePageObject.getArticleTitle(full_article_title));
+
+            ArticlePageObject.addArticleToMySaved();
+        }
         ArticlePageObject.closeArticle();
 
         NavigationUI navigationUI = NavigationUIFactory.get(driver);
+        navigationUI.openNavigation();
         navigationUI.clickMyLists();
 
         MyListsPageObject myListsPageObject = MyListsPageObjectFactory.get(driver);
@@ -60,10 +71,25 @@ public class MyListsTests extends CoreTestCase {
         String first_article_title = articlePageObject.getArticleTitle(full_article_title);
         if (Platform.getInstance().isAndroid()) {
             articlePageObject.addArticleToMyList(name_of_folder);
-        } else {
+        } else if (Platform.getInstance().isIOS()) {
             articlePageObject.addArticleToMySaved();
             articlePageObject.iosAuthClose();
+        } else {
+            articlePageObject.addArticleToMySaved();
         }
+
+        if (Platform.getInstance().isMW()) {
+            AuthorizationPageObject authorizationPageObject = new AuthorizationPageObject(driver);
+            authorizationPageObject.clickAuthButton();
+            authorizationPageObject.enterLoginData(login, password);
+            authorizationPageObject.submitForm();
+
+            articlePageObject.waitForTitleElement(full_article_title);
+            assertEquals("We are not on the same page after login", first_article_title, articlePageObject.getArticleTitle(full_article_title));
+
+            articlePageObject.addArticleToMySaved();
+        }
+
         articlePageObject.closeArticle();
 
         searchPageObject.initSearchInput();
@@ -80,6 +106,8 @@ public class MyListsTests extends CoreTestCase {
 
         if (Platform.getInstance().isAndroid()) {
             articlePageObject.addArticleToMyExistingList(name_of_folder);
+        } else if (Platform.getInstance().isIOS()) {
+            articlePageObject.addArticleToMySaved();
         } else {
             articlePageObject.addArticleToMySaved();
         }

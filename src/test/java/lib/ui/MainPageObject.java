@@ -225,6 +225,23 @@ public class MainPageObject {
         }
     }
 
+    public void tryClickElementWithFewAttempts(String locator, String error_message, int amount_of_attempts) {
+        int current_attempts = 0;
+        boolean need_more_attempts = true;
+
+        while (need_more_attempts) {
+            try {
+                this.waitForElementAndClick(locator, error_message, 1);
+                need_more_attempts = false;
+            } catch (Exception e) {
+                if (current_attempts > amount_of_attempts) {
+                    this.waitForElementAndClick(locator, error_message, 1);
+                }
+            }
+            ++current_attempts;
+        }
+    }
+
     public void scrollWebPageTillElementNotVisible(String locator, String error_message, int max_swipes) {
         int already_swiped = 0;
         WebElement element = this.waitForElementPresent(locator, error_message);
@@ -235,5 +252,9 @@ public class MainPageObject {
                 Assert.assertTrue(error_message, element.isDisplayed());
             }
         }
+    }
+
+    public boolean isElementPresent(String locator) {
+        return getAmountOfElements(locator) > 0;
     }
 }

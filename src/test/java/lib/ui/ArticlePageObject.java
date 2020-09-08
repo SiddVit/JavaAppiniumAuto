@@ -11,6 +11,7 @@ abstract public class ArticlePageObject extends MainPageObject {
             OPTIONS_BUTTON,
             ADD_TO_MY_LIST_BUTTON,
             ADD_TO_MY_LIST_OVERLAY,
+            REMOTE_FROM_MY_LIST_BUTTON,
             MY_LIST_NAME_INPUT,
             MY_LIST_OK_BUTTON,
             CLOSE_ARTICLE_BUTTON,
@@ -22,7 +23,6 @@ abstract public class ArticlePageObject extends MainPageObject {
             FOLDER_TITLE,
             AUTH_CLOSE,
             CLEAR_MINI;
-    ;
 
     public ArticlePageObject(RemoteWebDriver driver) {
         super(driver);
@@ -75,9 +75,12 @@ abstract public class ArticlePageObject extends MainPageObject {
     }
 
     public void closeArticle() {
-        this.waitForElementAndClick(CLOSE_ARTICLE_BUTTON, "Cannot find button X button and tap they", 5);
+        if (Platform.getInstance().isIOS() || Platform.getInstance().isAndroid()) {
+            this.waitForElementAndClick(CLOSE_ARTICLE_BUTTON, "Cannot find button X button and tap they", 5);
+        } else {
+            System.out.println("Method closeArticle() do nothing for platform " + Platform.getInstance().getPlatformVar());
+        }
     }
-
 
     public void clickMoreOptions() {
         this.waitForElementAndClick(MORE_OPTIONS, "Cannot find button to open article options", 5);
@@ -105,7 +108,17 @@ abstract public class ArticlePageObject extends MainPageObject {
     }
 
     public void addArticleToMySaved() {
+        if (Platform.getInstance().isMW()) {
+            this.remoteArticleFromSavedIfItAdded();
+        }
         this.waitForElementAndClick(ADD_TO_MY_LIST_BUTTON, "Cannot find option to add article to reading list", 5);
+    }
+
+    public void remoteArticleFromSavedIfItAdded() {
+        if (this.isElementPresent(REMOTE_FROM_MY_LIST_BUTTON)) {
+            this.waitForElementAndClick(REMOTE_FROM_MY_LIST_BUTTON, "Cannot click by remove from my list button", 5);
+            this.waitForElementPresent(ADD_TO_MY_LIST_BUTTON, "Cannot find button to add article to reading list after removing", 5);
+        }
     }
 
     public void addArticleToMyExistingList(String nameOfFolder) {
